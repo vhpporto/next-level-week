@@ -5,17 +5,21 @@ const server = express();
 
 //configurar pasta pública
 server.use(express.static("public"));
+nunjucks.configure("src/views", {
+  express: server,
+  noCache: true,
+});
 
 server.get("/", (req, res) => {
-  res.sendFile(__dirname + "/views/index.html");
+  return res.render("index.html");
 });
 
 server.get("/create-point", (req, res) => {
-  res.sendFile(__dirname + "/views/create-point.html");
+  return res.render("create-point.html");
 });
 
 server.get("/search", (req, res) => {
-  res.sendFile(__dirname + "/views/search-results.html");
+  return res.render("search-results.html");
 });
 
 server.listen(3333, () => {
